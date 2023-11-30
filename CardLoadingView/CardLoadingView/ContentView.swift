@@ -10,34 +10,27 @@ import SwiftUI
 struct ContentView: View {
 
     var body: some View {
-        VStack {
-            CardLoadingView(cards: Array(repeating: AnyView(cardView), count: 5))
-            Text("Loading...")
-                .padding(.top, 20)
+        ZStack {
+            // MARK: Background
+            LinearGradient(gradient: Gradient(colors: [
+                .green,
+                .green.opacity(0.75),
+                .green]
+            ), startPoint: .top, endPoint: .bottom)
+            .edgesIgnoringSafeArea(.all)
+
+            VStack {
+                CardLoadingView(cards: Array(repeating: AnyView(cardView), count: 5))
+                Text("Loading...")
+            }
         }
-        .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     @ViewBuilder var cardView: some View {
-        RoundedRectangle(cornerRadius: 15)
-            .strokeBorder(.black, lineWidth: 2)
-            .background(
-                RoundedRectangle(cornerRadius: 15).fill(.white)
-            )
+        Image("card")
+            .resizable()
             .frame(width: 90, height: 150)
-            .overlay(
-                RoundedRectangle(cornerRadius: 15)
-                    .strokeBorder(.black, lineWidth: 2)
-                    .background(RoundedRectangle(cornerRadius: 15).fill(Color.clear))
-                    .padding(10)
-            )
-            .overlay(
-                Image(systemName: "suit.spade.fill")
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .foregroundColor(.black)
-                    .padding(15)
-            )
     }
 }
 
