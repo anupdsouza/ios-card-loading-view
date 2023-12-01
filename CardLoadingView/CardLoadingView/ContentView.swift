@@ -12,19 +12,19 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             // MARK: Background
-            LinearGradient(gradient: Gradient(colors: [
+            LinearGradient(colors: [
                 .green,
                 .green.opacity(0.75),
-                .green]
-            ), startPoint: .top, endPoint: .bottom)
+                .green
+            ], startPoint: .top, endPoint: .bottom)
             .edgesIgnoringSafeArea(.all)
-
+            
+            // MARK: Content
             VStack {
                 CardLoadingView(cards: Array(repeating: AnyView(cardView), count: 5))
                 Text("Loading...")
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
     @ViewBuilder var cardView: some View {
